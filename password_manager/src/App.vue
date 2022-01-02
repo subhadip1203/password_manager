@@ -1,5 +1,5 @@
 <template>
-  <PasswordInput @changepassword="changePassword"/>
+  <PasswordInput @changePassword="changePassword"/>
 </template>
 
 <script>
@@ -20,7 +20,7 @@ export default {
       console.log(newval);
     }
   },
-  method: {
+  methods: {
     changePassword: function(payload){
       if(payload){
         this.mypassword = payload

@@ -6,9 +6,7 @@
 <script>
 export default {
   name: 'PasswordInput',
-  props: {
-    msg: String
-  },
+  emits: ["changePassword"],
   data: function() {
     return {
       mypass: ''
@@ -16,7 +14,7 @@ export default {
   },
   methods: {
     savePasswordHandler : function(){
-      this.$$emit("changepassword" , this.mypass)
+      this.$emit("changePassword" , this.mypass)
     }
   }
 }
