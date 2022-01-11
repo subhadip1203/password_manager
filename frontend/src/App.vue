@@ -1,14 +1,17 @@
 <template>
   <PasswordInput @changePassword="changePassword"/>
+  <Encryption />
 </template>
 
 <script>
 import PasswordInput from './components/PasswordInput.vue'
+import Encryption from './components/Encryption.vue'
 
 export default {
   name: 'App',
   components: {
-    PasswordInput
+    PasswordInput,
+    Encryption
   },
   data: function() {
     return {

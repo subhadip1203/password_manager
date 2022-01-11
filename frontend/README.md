@@ -1,4 +1,4 @@
-# password_manager
+# frontend
 
 ## Project setup
 ```
