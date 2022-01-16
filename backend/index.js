@@ -2,6 +2,8 @@ const express = require('express')
 const app = express()
 const port = 3000
 
+const {encrypt,decrypt} = require('./helper/encrypt_decrypt')
+
 app.get('/', (req, res) => {
   res.send('Hello World!')
 })
