@@ -1,7 +1,8 @@
 const crypto = require('crypto');
-const ENC_KEY = "bf3c199c2470cb477d907b1e0917c17b"; // set random encryption key
-const IV = "5183666c72eec9e4"; // set random initialisation vector
+
 // ENC_KEY and IV can be generated as crypto.randomBytes(32).toString('hex');
+const ENC_KEY = process.env.ENCRYPTION_KEY;     // set random encryption key
+const IV = process.env.INITIAL_VECTOR;          // set random initialisation vector
 
 const phrase = "who let the dogs out";
 
