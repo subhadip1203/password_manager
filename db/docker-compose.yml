@@ -1,0 +1,20 @@
+version: '3'
+services:
+  db:
+    image: mongo
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: example
+    volumes:
+      - ./mongoData:/data/db
+    ports:
+      - 27017:27017
+    networks:
+      - passdbnetwork
+
+networks:
+  passdbnetwork:
+
+
+# docker-compose -f docker-compose.override.yml up -d
+# docker-compose up --build
