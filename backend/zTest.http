@@ -1,0 +1,18 @@
+###
+GET http://localhost:8000
+content-type: application/json
+
+
+
+###
+POST http://localhost:8000/v1/auth/login 
+content-type: application/json
+
+{
+    "name": "test21",
+    "factories": ["abcd"]
+}
+
+
+
+

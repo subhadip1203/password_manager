@@ -27,15 +27,14 @@ mongoose
 const {encrypt,decrypt} = require('./helper/encrypt_decrypt')
 
 app.get('/', (req, res) => {
-  res.send('Hello World!')
-})
-app.post('/', (req, res) => {
-  res.send('post data!')
+  res.send('ping')
 })
 
+app.use('/v1', require('./routes/v1'));
 
 
-const port = 3000
+
+const port = 8000
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`)
 })
