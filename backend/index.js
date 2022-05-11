@@ -1,6 +1,8 @@
 require('dotenv').config()
-const express = require('express')
-const app = express()
+const express = require('express');
+const cors = require('cors');
+const app = express();
+
 
 
 /**
@@ -22,7 +24,13 @@ mongoose
  * middleware
  * */
 
-
+const corsOptions = {
+  origin: 'https://localhost:3000',
+  credentials: true,
+};
+app.use(cors(corsOptions));
+app.use(express.json()); // bodyparser : old
+app.use(express.urlencoded({ extended: false }));
 
 const {encrypt,decrypt} = require('./helper/encrypt_decrypt')
 
