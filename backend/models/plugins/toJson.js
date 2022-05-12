@@ -11,6 +11,7 @@ const toJSON = (schema) => {
       delete result.__v;
       delete result.createdAt;
       delete result.updatedAt;
+      delete result.isDeleted;
       for (const key in schema.paths) {
         if (schema.paths[key].options && schema.paths[key].options.private) {
           delete result[key];

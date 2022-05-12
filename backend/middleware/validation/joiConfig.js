@@ -2,22 +2,24 @@ const Joi = require("joi");
 
 const joiMiddleWare = (validateSchame) => (req, res, next) => {
   
-  const validation_err = {};
+  let req_body_err = [];
+  let req_query_err = [];
+
   if (validateSchame.body) {
-    const { value, error } = validateSchame.body.validate(req.body);
+    const { value, error } = validateSchame.body.validate(req.body,{abortEarly: false});
     if (error) {
-      validation_err.req_body = error;
+      req_body_err =error.details.map(v=> v.message)
     }
   }
   if (validateSchame.query) {
-    const { value, error } = validateSchame.query.validate(req.query);
+    const { value, error } = validateSchame.query.validate(req.query,{abortEarly: false});
     if (error) {
-      validation_err.req_query = error;
+      req_query_err = error.details.map(v=> v.message);
     }
   }
 
-  if (validation_err && Object.keys(validation_err).length > 0) {
-    res.status(404).send({error:validation_err})
+  if (req_body_err || req_query_err ) {
+    res.status(404).send({error:[...req_body_err, ...req_query_err]})
   } 
   else{
     next();
