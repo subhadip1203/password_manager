@@ -2,17 +2,13 @@ const mongoose = require('mongoose');
 const toJSON = require('./plugins/toJson');
 
 const userSchema = mongoose.Schema({
-  customuserId: {
-    type: String,
-    required: true,
-  },
   email: {
     type: String,
     trim: true,
     required: true,
   },
 
-  name: {
+  fullName: {
     type: String,
     trim: true,
     required: true,
@@ -22,13 +18,13 @@ const userSchema = mongoose.Schema({
     type: String,
     trim: true,
     required: true,
-    customtype: 'static',
+    customtype: 'private',
   },
   passCode: {
     type: String,
     trim: true,
     default: process.env.DEFAULT_PASS_CODE,
-    customtype: 'static',
+    customtype: 'private',
   },
   isDeleted : {
     type: Boolean,
@@ -42,10 +38,10 @@ const User = mongoose.model('User', userSchema);
 
 const findUser = async (filter) => {
   try {
-    const companyDetails = await User.findOne({...filter,isDeleted: flase}).exec();
+    const companyDetails = await User.findOne({...filter, isDeleted: false}).exec();
     return companyDetails;
   } catch (err) {
-    throw new DBError('could not find User');
+    throw new Error(' userModel=>findUser : could not find User');
   }
 };
 
@@ -54,7 +50,7 @@ const saveUser = async (deatils) => {
     const newUser = new User({ ...deatils });
     return newUser.save();
   } catch (err) {
-    throw new DBError('could not save User');
+    throw new Error(' userModel=>saveUser : could not save User');
   }
 };
 
@@ -63,7 +59,7 @@ const updateUser = async (updateUser) => {
     await updateUser.save();
     return findCompany;
   } catch (err) {
-    throw new DBError('could not update User');
+    throw new Error (' userModel=>updateUser : could not update User');
   }
 };
 

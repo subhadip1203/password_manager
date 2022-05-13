@@ -18,7 +18,7 @@ const joiMiddleWare = (validateSchame) => (req, res, next) => {
     }
   }
 
-  if (req_body_err || req_query_err ) {
+  if (req_body_err.length > 0 || req_query_err.length > 0 ) {
     res.status(404).send({error:[...req_body_err, ...req_query_err]})
   } 
   else{

@@ -13,7 +13,11 @@ const toJSON = (schema) => {
       delete result.updatedAt;
       delete result.isDeleted;
       for (const key in schema.paths) {
-        if (schema.paths[key].options && schema.paths[key].options.private) {
+        if (schema.paths[key].options &&
+          schema.paths[key].options.customtype &&
+          schema.paths[key].options.customtype === 'private' &&
+          result[key]
+        ) {
           delete result[key];
         } else if (
           schema.paths[key].options &&
