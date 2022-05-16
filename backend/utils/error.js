@@ -1,5 +1,4 @@
-/* eslint-disable no-use-before-define */
-/* eslint-disable max-classes-per-file */
+
 class GeneralError extends Error {
   constructor(message) {
     super();
@@ -10,8 +9,19 @@ class GeneralError extends Error {
 class PublicError extends GeneralError {}
 class PrivateError extends GeneralError {}
 
-module.exports = {
-  GeneralError,
-  PublicError,
-  PrivateError
+
+const catchAsyncMiddleware= (fn) => (req, res, next) => {
+  Promise
+  .resolve(fn(req, res, next))
+  .catch((err) =>{ 
+    if (err instanceof PublicError) {
+      res.status(400).send({ success: 0, err : err.message });
+    } else {
+      console.log("\x1b[31m",err.message)
+      res.status(400).send({ success: 0, err : 'server error' });
+    }
+  });
 };
+
+module.exports = {PublicError, PrivateError, catchAsyncMiddleware };
+

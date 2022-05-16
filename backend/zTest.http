@@ -9,8 +9,9 @@ POST http://localhost:8000/v1/auth/register
 content-type: application/json
 
 {
-    "name": "test21",
-    "factories": ["abcd"]
+    "email": "subhadip1203@gmail.com",
+    "name": "subahdip",
+    "password": "12345"
 }
 
 

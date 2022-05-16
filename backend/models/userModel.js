@@ -1,11 +1,13 @@
 const mongoose = require('mongoose');
 const toJSON = require('./plugins/toJson');
+const {PublicError, PrivateError} = require("../utils/error")
 
 const userSchema = mongoose.Schema({
   email: {
     type: String,
     trim: true,
     required: true,
+    unique: true,
   },
 
   fullName: {
@@ -41,16 +43,26 @@ const findUser = async (filter) => {
     const companyDetails = await User.findOne({...filter, isDeleted: false}).exec();
     return companyDetails;
   } catch (err) {
-    throw new Error(' userModel=>findUser : could not find User');
+    if (err instanceof PublicError) {
+      throw new PublicError(err.message);
+    } else {
+      throw new PrivateError(" userModel => saveUser || "+err.message);
+    }
   }
 };
 
 const saveUser = async (deatils) => {
   try {
+    let user = await findUser({email: deatils.email});
+    if(user) throw new PublicError ("user already registered")
     const newUser = new User({ ...deatils });
     return newUser.save();
   } catch (err) {
-    throw new Error(' userModel=>saveUser : could not save User');
+    if (err instanceof PublicError) {
+      throw new PublicError(err.message);
+    } else {
+      throw new PrivateError(" userModel => saveUser || "+err.message);
+    }
   }
 };
 
@@ -59,7 +71,11 @@ const updateUser = async (updateUser) => {
     await updateUser.save();
     return findCompany;
   } catch (err) {
-    throw new Error (' userModel=>updateUser : could not update User');
+    if (err instanceof PublicError) {
+      throw new PublicError(err.message);
+    } else {
+      throw new PrivateError(" userModel => saveUser || "+err.message);
+    }
   }
 };
 
