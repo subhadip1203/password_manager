@@ -22,12 +22,7 @@ const userSchema = mongoose.Schema({
     required: true,
     customtype: 'private',
   },
-  passCode: {
-    type: String,
-    trim: true,
-    default: process.env.DEFAULT_PASS_CODE,
-    customtype: 'private',
-  },
+
   isDeleted : {
     type: Boolean,
     default: false

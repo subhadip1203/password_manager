@@ -15,5 +15,15 @@ content-type: application/json
 }
 
 
+###
+POST http://localhost:8000/v1/auth/login 
+content-type: application/json
+
+{
+    "email": "subhadip1203@gmail.com",
+    "password": "12345"
+}
+
+
 
 
