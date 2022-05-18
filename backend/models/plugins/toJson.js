@@ -1,8 +1,3 @@
-/* eslint-disable no-restricted-syntax */
-/* eslint-disable no-unused-vars */
-/* eslint-disable no-underscore-dangle */
-/* eslint-disable no-param-reassign */
-
 const toJSON = (schema) => {
   schema.options.toJSON = {
     transform(doc, result, options) {

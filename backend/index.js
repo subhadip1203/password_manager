@@ -1,6 +1,9 @@
 require('dotenv').config()
+const https = require('https');
+const fs = require('fs');
 const express = require('express');
 const cors = require('cors');
+const cookieParser = require('cookie-parser');
 const app = express();
 
 
@@ -31,6 +34,7 @@ const corsOptions = {
 app.use(cors(corsOptions));
 app.use(express.json()); // bodyparser : old
 app.use(express.urlencoded({ extended: false }));
+app.use(cookieParser());
 
 const {encrypt,decrypt} = require('./helper/encrypt_decrypt')
 
@@ -42,7 +46,15 @@ app.use('/v1', require('./routes/v1'));
 
 
 
-const port = 8000
-app.listen(port, () => {
-  console.log(`Example app listening at http://localhost:${port}`)
-})
+/**
+ * running server with HTTPS
+ * */
+ const PORT = process.env.PORT || 8000;
+ const options = {
+   key: fs.readFileSync('./cert/key.pem'), // Replace with the path to your key
+   cert: fs.readFileSync('./cert/cert.pem'), // Replace with the path to your certificate
+ };
+ https.createServer(options, app).listen(PORT, () => {
+   console.log(`server started : https://localhost:${PORT}`);
+ });
+

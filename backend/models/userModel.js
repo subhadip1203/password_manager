@@ -33,10 +33,18 @@ userSchema.plugin(toJSON);
 
 const User = mongoose.model('User', userSchema);
 
-const findUser = async (filter) => {
+
+// getpassword is needed for login purpose
+// other cases , we do not need to provide password 
+const findUser = async (filter , getPassword=false) => {
   try {
-    const companyDetails = await User.findOne({...filter, isDeleted: false}).exec();
-    return companyDetails;
+    const userDetails = await User.findOne({...filter, isDeleted: false}).exec();
+    if(getPassword){
+      const dbUserPass = userDetails.loginPassword
+      const userData = userDetails.toJSON() 
+      return {...userData , loginPassword: dbUserPass};
+    }
+    return userDetails.toJSON();
   } catch (err) {
     if (err instanceof PublicError) {
       throw new PublicError(err.message);
