@@ -25,5 +25,11 @@ content-type: application/json
 }
 
 
+###
+GET https://localhost:8000/v1/auth
+content-type: application/json
+Authorization : eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InN1YmhhZGlwMTIwM0BnbWFpbC5jb20iLCJmdWxsTmFtZSI6InN1YmFoZGlwIiwiaWQiOiI2MjgzZGMwNDAwNjU1NTYxYmZhYjZhZGYiLCJsb2dpblBhc3N3b3JkIjoiJDJiJDEwJFV3LkdiYzR0WVgxaDBMWjFRcWFrV09VNWRIbWg1eGJER2tRWnFEazVYMUcxMlg0SHJram91IiwiaWF0IjoxNjUzMDY3NDMwLCJleHAiOjE2NTMwNjc0MzN9.5YoP3ObsMgYK2gERVgZff8DVbPLT1jQ9yMBi_yGKHJs
+
+
 
 
