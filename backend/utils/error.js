@@ -15,10 +15,10 @@ const catchAsyncMiddleware= (fn) => (req, res, next) => {
   .resolve(fn(req, res, next))
   .catch((err) =>{ 
     if (err instanceof PublicError) {
-      res.status(400).send({ success: 0, err : err.message });
+      res.sendStatus(400).send({ success: 0, err : err.message });
     } else {
       console.log("\x1b[31m",err.message)
-      res.status(400).send({ success: 0, err : 'server error' });
+      res.sendStatus(400).send({ success: 0, err : 'server error' });
     }
   });
 };

@@ -1,11 +1,20 @@
-###
-GET https://localhost:8000
+
+@host = https://localhost:8000
+@accessToken  = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InN1YmhhZGlwMTIwM0BnbWFpbC5jb20iLCJmdWxsTmFtZSI6InN1YmFoZGlwIiwiaWQiOiI2MjgzZGMwNDAwNjU1NTYxYmZhYjZhZGYiLCJsb2dpblBhc3N3b3JkIjoiJDJiJDEwJFV3LkdiYzR0WVgxaDBMWjFRcWFrV09VNWRIbWg1eGJER2tRWnFEazVYMUcxMlg0SHJram91IiwiaWF0IjoxNjUzMTUzMTA3LCJleHAiOjE2NTMxNTMxMTB9.-eFLiQ6KwOYHk-UH4hswM2_aUrf5x6lbnU6FcNN6mTs
+
+
+
+### -- Login ---
+POST {{host}}/v1/auth/login 
 content-type: application/json
 
+{
+    "email": "subhadip1203@gmail.com",
+    "password": "12345"
+}
 
-
-###
-POST https://localhost:8000/v1/auth/register 
+### -- registration --
+POST {{host}}/v1/auth/register 
 content-type: application/json
 
 {
@@ -15,20 +24,15 @@ content-type: application/json
 }
 
 
-###
-POST https://localhost:8000/v1/auth/login 
+### -- auth test --
+GET {{host}}
 content-type: application/json
-
-{
-    "email": "subhadip1203@gmail.com",
-    "password": "12345"
-}
+Authorization: {{accessToken}}
 
 
-###
-GET https://localhost:8000/v1/auth
-content-type: application/json
-Authorization : eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InN1YmhhZGlwMTIwM0BnbWFpbC5jb20iLCJmdWxsTmFtZSI6InN1YmFoZGlwIiwiaWQiOiI2MjgzZGMwNDAwNjU1NTYxYmZhYjZhZGYiLCJsb2dpblBhc3N3b3JkIjoiJDJiJDEwJFV3LkdiYzR0WVgxaDBMWjFRcWFrV09VNWRIbWg1eGJER2tRWnFEazVYMUcxMlg0SHJram91IiwiaWF0IjoxNjUzMDY3NDMwLCJleHAiOjE2NTMwNjc0MzN9.5YoP3ObsMgYK2gERVgZff8DVbPLT1jQ9yMBi_yGKHJs
+
+
+
 
 
 

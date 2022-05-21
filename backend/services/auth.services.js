@@ -2,7 +2,7 @@ const bcrypt = require('bcrypt');
 const saltRounds = 10;
 const {findUser, saveUser} = require('../models/userModel')
 const {PublicError, PrivateError} = require("../utils/error")
-const {createAccessToken, createRefreshToken} = require("../utils/jwt")
+const {createAccessToken} = require("../utils/jwt")
 
 
 const createUser = async (deatils) => {
@@ -27,9 +27,9 @@ const loginService = async (deatils) => {
   try {
     const getUser = await findUser({newemail : deatils.email} , getPassword=true);
     if(getUser &&  await bcrypt.compare(deatils.password, getUser.loginPassword) ) {
-      const accessToken = await createAccessToken(getUser)
-      const refreshToken = await createRefreshToken(getUser)
-      return {user : getUser, accessToken , refreshToken}
+      const {loginPassword ,...user } = getUser
+      const accessToken = await createAccessToken(user)
+      return {user , accessToken}
     }
     else{
       throw new PublicError("login failed");

@@ -1,28 +1,16 @@
-const jwt = require('jsonwebtoken');
-const {PublicError,PrivateError} = require("./error")
+const jwt = require("jsonwebtoken");
+const { PublicError, PrivateError } = require("./error");
 
 const createAccessToken = async (data) => {
-  try{
-    const token = jwt.sign({...data}, process.env.JWT_ACCESS_SECRET , { expiresIn: process.env.JWT_ACCESS_TOKEN_EXP });
-    return token
-  }
-  catch(err){
-    throw new PrivateError(" createAccessToken || "+err.message);
-  }
-  
-}
-
-
-const createRefreshToken = async (data) => {
-  try{
-    const token = jwt.sign({...data}, process.env.JWT_REFRESH_SECRET , { expiresIn: process.env.JWT_REFRESH_TOKEN_EXP });
-    return token
-  }
-  catch(err){
-    throw new PrivateError(" createRefreshToken || "+err.message);
-  }
-  
-}
+	try {
+		const token = jwt.sign({ ...data }, process.env.JWT_ACCESS_SECRET, {
+			expiresIn: process.env.JWT_ACCESS_TOKEN_EXP,
+		});
+		return token;
+	} catch (err) {
+		throw new PrivateError(" createAccessToken || " + err.message);
+	}
+};
 
 
 const verifyAccessToken = async(token) => {
@@ -42,27 +30,7 @@ const verifyAccessToken = async(token) => {
   }
 }
 
-
-const verifyRefreshToken = async(token) => {
-  try{
-    const data = await jwt.verify(token, process.env.JWT_REFRESH_TOKEN_EXP)
-    return data
-  }
-  catch(err){
-    if (err instanceof PublicError) {
-      throw new PublicError(err.message);
-    } else {
-      throw new PrivateError(" verifyAccessToken || "+err.message);
-    }
-  }
-}
-
-
-
-
 module.exports = {
-  createAccessToken,
-  createRefreshToken,
-  verifyAccessToken,
-  verifyRefreshToken
+	createAccessToken,
+	verifyAccessToken,
 };
