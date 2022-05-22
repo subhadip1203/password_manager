@@ -1,7 +1,6 @@
 
 @host = https://localhost:8000
-@accessToken  = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InN1YmhhZGlwMTIwM0BnbWFpbC5jb20iLCJmdWxsTmFtZSI6InN1YmFoZGlwIiwiaWQiOiI2MjgzZGMwNDAwNjU1NTYxYmZhYjZhZGYiLCJsb2dpblBhc3N3b3JkIjoiJDJiJDEwJFV3LkdiYzR0WVgxaDBMWjFRcWFrV09VNWRIbWg1eGJER2tRWnFEazVYMUcxMlg0SHJram91IiwiaWF0IjoxNjUzMTUzMTA3LCJleHAiOjE2NTMxNTMxMTB9.-eFLiQ6KwOYHk-UH4hswM2_aUrf5x6lbnU6FcNN6mTs
-
+@accessToken  = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InN1YmhhZGlwMTIwM0BnbWFpbC5jb20iLCJmdWxsTmFtZSI6InN1YmFoZGlwIiwiaWQiOiI2MjgzZGMwNDAwNjU1NTYxYmZhYjZhZGYiLCJpYXQiOjE2NTMxNTU2ODAsImV4cCI6MTY1MzE1NTY4MH0.3gbdGtHuFHXpEQIX1sxpugLeKI5Tjedc_Lz6c9DA-hA
 
 
 ### -- Login ---
@@ -25,7 +24,7 @@ content-type: application/json
 
 
 ### -- auth test --
-GET {{host}}
+GET {{host}}/v1/auth/
 content-type: application/json
 Authorization: {{accessToken}}
 
