@@ -49,7 +49,7 @@ const findUser = async (filter , getPassword=false) => {
     if (err instanceof PublicError) {
       throw new PublicError(err.message);
     } else {
-      throw new PrivateError(" userModel => saveUser || "+err.message);
+      throw new PrivateError(" userModel => findUser || "+err.message);
     }
   }
 };

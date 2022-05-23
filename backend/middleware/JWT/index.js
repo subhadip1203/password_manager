@@ -1,6 +1,6 @@
 const { verifyAccessToken} = require("../../utils/jwt");
 const {catchAsyncMiddleware} = require("../../utils/error")
-const { PublicError, PrivateError } = require("../../utils/error");
+const { PublicError} = require("../../utils/error");
 
 const authMiddleWare = catchAsyncMiddleware(async (req, res, next) => {
   if(req.headers.authorization ) {
